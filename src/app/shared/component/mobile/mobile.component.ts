@@ -10,4 +10,6 @@ import { mobileProducts } from "../const/mobile";
 })
 export class mobileComponent {
 mobileArray : Array<Imobile>=  mobileProducts
+noimage: TemplateRef<NgIfContext<string>>|null;
+No: any;
 }
