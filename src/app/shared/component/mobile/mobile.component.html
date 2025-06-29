@@ -1,0 +1,55 @@
+
+
+<div class = "row">
+    <div class = "col-12 mb-4" *ngFor="let mobile of mobileArray">
+        <div class = "card mobilecard">
+            <div class = "card-body">
+                <div class = "row">
+                    <div class = "col-md-4">
+                        <img  
+                        *ngIf ="mobile.image; else noimage"
+                        class = "mobileimg"  
+                        [src] ="mobile.image"
+                        >
+
+                        <ng-template  #noimage>
+                            <img 
+                            class = "mobileimg"  
+                            src = "https://placehold.co/600x400/EEE/31343C"
+                            alt = "No Image Available">
+                        </ng-template>
+                    </div>
+                    <div class = "col-md-6">
+                        <h3>{{mobile.name}}
+                        <span
+                        [ngClass] = "{
+                            'badge-success': mobile.rating >= 4,
+                            'badge-warning': mobile.rating < 4 && mobile.rating >= 3,
+                            'badge-danger': mobile.rating < 3
+                        }"
+                        class= "badge">{{mobile.rating}}</span>
+                        </h3>
+                        <ul class ="list-group">
+                            <li
+                            *ngFor ="let feature of mobile.features"
+                            class ="list-group-item">
+                                {{feature}}
+                            </li>
+                        </ul>
+                       
+                    </div>
+                     <div class = "col-md-2">
+                        <h4>
+                            {{mobile.price | currency:'INR'}} <br>
+                            <del><small>{{mobile.price | currency:'INR'}}</small></del>
+                        </h4>
+
+                        <strong class = "tect-danger" ngIf = "mobile.noOfItems < 10">
+                            only {{mobile.noOfItems}} left !!
+                        </strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
